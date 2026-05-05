@@ -1,6 +1,6 @@
 :root {
-  color: #243044;
-  background: #f8efe7;
+  color: #172235;
+  background: #fff8ef;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -20,25 +20,16 @@ body {
   margin: 0;
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
 .page-shell {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   min-height: 100vh;
+  place-items: center;
   overflow: hidden;
-  padding: 112px 32px 32px;
+  padding: 24px;
   background:
-    radial-gradient(circle at 15% 20%, rgba(255, 210, 182, 0.85), transparent 28%),
-    radial-gradient(circle at 85% 15%, rgba(176, 219, 255, 0.75), transparent 26%),
+    radial-gradient(circle at 20% 20%, rgba(255, 210, 182, 0.9), transparent 28%),
+    radial-gradient(circle at 80% 15%, rgba(176, 219, 255, 0.8), transparent 28%),
     linear-gradient(135deg, #fff8ef 0%, #eef7ff 100%);
 }
 
@@ -65,255 +56,34 @@ select {
   background: #a2d2ff;
 }
 
-.site-header {
-  position: fixed;
-  top: 18px;
-  left: 50%;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  width: min(960px, calc(100% - 36px));
-  min-height: 64px;
-  padding: 12px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 16px 44px rgba(91, 76, 59, 0.12);
-  transform: translateX(-50%);
-  backdrop-filter: blur(22px);
-}
-
-.site-name {
-  color: #172235;
-  font-size: 1.05rem;
-  font-weight: 850;
-  text-decoration: none;
-}
-
-.tabs {
-  position: absolute;
-  left: 50%;
-  display: flex;
-  gap: 8px;
-  padding: 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.64);
-  transform: translateX(-50%);
-}
-
-.tab {
-  padding: 10px 18px;
-  color: #61758f;
-  font-weight: 750;
-  cursor: pointer;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  transition:
-    color 180ms ease,
-    background-color 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.tab.active {
-  color: #172235;
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(91, 76, 59, 0.1);
-}
-
-.hero-card {
+.message-card {
   position: relative;
   z-index: 1;
-  width: min(760px, 100%);
+  width: min(900px, 100%);
   padding: clamp(28px, 6vw, 64px);
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 36px;
   background: rgba(255, 255, 255, 0.72);
   box-shadow: 0 24px 80px rgba(91, 76, 59, 0.16);
-  cursor: pointer;
   backdrop-filter: blur(22px);
 }
 
-.eyebrow {
-  margin: 0 0 14px;
-  color: #61758f;
-  font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-h1 {
-  max-width: 620px;
-  margin: 0 auto 34px;
-  color: #172235;
-  font-size: clamp(2.2rem, 7vw, 5.2rem);
-  line-height: 0.96;
-  letter-spacing: -0.06em;
-}
-
-.phrase-card {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  min-height: 190px;
-  padding: clamp(24px, 5vw, 42px);
-  border-radius: 28px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 248, 239, 0.82));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  animation: phrase-in 700ms ease both;
-}
-
-.phrase-card img,
-.phrase-card video {
-  width: 100%;
-  max-height: clamp(240px, 46vw, 430px);
-  object-fit: contain;
-  user-select: none;
-  border-radius: 22px;
-  box-shadow: 0 16px 34px rgba(91, 76, 59, 0.16);
-}
-
-.phrase-card p {
-  max-width: 590px;
-  margin: 0;
-  align-self: center;
-  color: #31445f;
-  font-size: clamp(1.35rem, 3.2vw, 2.15rem);
-  font-weight: 650;
-  line-height: 1.25;
-}
-
-.place-card h1 {
+.message-card p {
   margin: 0;
   color: #172235;
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.05em;
-}
-
-.place-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-}
-
-.telegram-button {
-  margin-top: 4px;
-  padding: 14px 22px;
-  color: #ffffff;
-  font-weight: 850;
-  cursor: pointer;
-  border: 0;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #2aabee, #229ed9);
-  box-shadow: 0 14px 30px rgba(34, 158, 217, 0.28);
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.telegram-button:hover {
-  box-shadow: 0 18px 36px rgba(34, 158, 217, 0.34);
-  transform: translateY(-2px);
-}
-
-.telegram-button:disabled {
-  cursor: wait;
-  opacity: 0.72;
-  transform: none;
-}
-
-.telegram-status {
-  color: #2f7d54;
-  font-size: 0.95rem;
-  font-weight: 750;
-}
-
-.telegram-status.error {
-  color: #b42318;
-}
-
-.tab:focus-visible,
-.telegram-button:focus-visible,
-.dot:focus-visible {
-  outline: 3px solid rgba(255, 143, 171, 0.7);
-  outline-offset: 4px;
-}
-
-.progress-dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 28px;
-}
-
-.dot {
-  width: 9px;
-  height: 9px;
-  padding: 0;
-  cursor: pointer;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(49, 68, 95, 0.2);
-  transition:
-    width 250ms ease,
-    background-color 250ms ease;
-}
-
-.dot.active {
-  width: 28px;
-  background: #ff8fab;
-}
-
-@keyframes phrase-in {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(0.985);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  font-size: clamp(2.5rem, 9vw, 7rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.07em;
 }
 
 @media (max-width: 560px) {
   .page-shell {
-    padding: 108px 18px 18px;
+    padding: 18px;
   }
 
-  .site-header {
-    align-items: flex-start;
-    min-height: 84px;
+  .message-card {
     border-radius: 28px;
   }
-
-  .tabs {
-    top: 42px;
-    width: calc(100% - 24px);
-    justify-content: center;
-  }
-
-  .tab {
-    flex: 1;
-    padding: 9px 12px;
-  }
-
-  .hero-card {
-    border-radius: 28px;
-  }
-
-  .phrase-card {
-    min-height: 230px;
-    gap: 22px;
-  }
-
-  .phrase-card img,
-  .phrase-card video {
-    max-height: 320px;
-  }
-
 }
