@@ -356,7 +356,22 @@ body {
   }
 
   .slider-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin-top: 18px;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .slider-controls > button {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .dots {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-content: center;
   }
 }
 
