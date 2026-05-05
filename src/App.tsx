@@ -169,7 +169,7 @@ function App() {
     <main className="page-shell">
       <header className="site-header">
         <a className="site-name" href="/">
-          Нахуй сопли
+          Павел Селин
         </a>
         <nav className="tabs" aria-label="Разделы сайта">
           <button
