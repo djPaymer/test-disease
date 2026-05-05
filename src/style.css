@@ -24,9 +24,10 @@ body {
   position: relative;
   display: grid;
   min-height: 100vh;
+  min-height: 100dvh;
   place-items: center;
   overflow: hidden;
-  padding: 24px;
+  padding: clamp(24px, 5vw, 56px);
   background:
     radial-gradient(circle at 20% 20%, rgba(255, 210, 182, 0.9), transparent 28%),
     radial-gradient(circle at 80% 15%, rgba(176, 219, 255, 0.8), transparent 28%),
@@ -56,26 +57,268 @@ body {
   background: #a2d2ff;
 }
 
-.message-card {
+.cards-page {
   position: relative;
   z-index: 1;
-  width: min(900px, 100%);
-  padding: clamp(28px, 6vw, 64px);
+  display: grid;
+  align-content: center;
+  width: min(1120px, 100%);
+  min-height: calc(100dvh - clamp(48px, 10vw, 112px));
+}
+
+.eyebrow {
+  width: fit-content;
+  margin: 0 auto 18px;
+  padding: 8px 14px;
+  color: #9a4a16;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background: rgba(255, 213, 173, 0.72);
+}
+
+.cards-page h1 {
+  margin: 0;
+  color: #172235;
   text-align: center;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+}
+
+.cards-slider {
+  display: grid;
+  width: min(620px, 100%);
+  margin-top: clamp(28px, 5vw, 44px);
+  margin-inline: auto;
+  perspective: 1200px;
+}
+
+.slide-card {
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+}
+
+.cards-slider.next .slide-card {
+  animation: slide-in-next 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cards-slider.previous .slide-card {
+  animation: slide-in-previous 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reason-card,
+.answer-card {
+  min-height: 360px;
   border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 36px;
+  border-radius: 30px;
   background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 24px 80px rgba(91, 76, 59, 0.16);
+  box-shadow: 0 24px 60px rgba(91, 76, 59, 0.14);
   backdrop-filter: blur(22px);
 }
 
-.message-card p {
-  margin: 0;
-  color: #172235;
-  font-size: clamp(2.5rem, 9vw, 7rem);
+.reason-card {
+  display: grid;
+  align-content: space-between;
+  gap: 24px;
+  padding: clamp(28px, 5vw, 44px);
+}
+
+.reason-card span {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  color: #ffffff;
+  font-size: 1.6rem;
   font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.07em;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ff8a65, #7c5cff);
+  box-shadow: 0 10px 24px rgba(124, 92, 255, 0.22);
+}
+
+.reason-card img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 18px 36px rgba(23, 34, 53, 0.14);
+}
+
+.reason-card p {
+  margin: 0;
+  color: #24324a;
+  font-size: clamp(1.55rem, 4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.answer-card {
+  display: grid;
+  align-content: center;
+  padding: clamp(24px, 4vw, 40px);
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 232, 214, 0.88), rgba(232, 244, 255, 0.9));
+}
+
+.answer-card h2 {
+  margin: 0 0 24px;
+  color: #172235;
+  font-size: clamp(3rem, 8vw, 5.8rem);
+  line-height: 1;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.button-row button {
+  min-width: 120px;
+  padding: 14px 24px;
+  color: #ffffff;
+  font: inherit;
+  font-size: 1.08rem;
+  font-weight: 900;
+  border: 0;
+  border-radius: 999px;
+  background: #172235;
+  box-shadow: 0 14px 28px rgba(23, 34, 53, 0.18);
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.button-row button:hover {
+  transform: translateY(-2px);
+  background: #7c5cff;
+  box-shadow: 0 18px 34px rgba(124, 92, 255, 0.24);
+}
+
+.button-row button:active {
+  transform: translateY(0);
+}
+
+.slider-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.slider-controls > button,
+.modal-card button {
+  min-width: 112px;
+  padding: 12px 18px;
+  color: #172235;
+  font: inherit;
+  font-weight: 900;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 12px 26px rgba(23, 34, 53, 0.12);
+  cursor: pointer;
+}
+
+.slider-controls > button:disabled {
+  color: rgba(23, 34, 53, 0.34);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dots button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(23, 34, 53, 0.22);
+  cursor: pointer;
+}
+
+.dots button.active {
+  width: 28px;
+  background: #7c5cff;
+}
+
+@keyframes slide-in-next {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateX(44px) rotateY(-8deg) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0) rotateY(0) scale(1);
+  }
+}
+
+@keyframes slide-in-previous {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateX(-44px) rotateY(8deg) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0) rotateY(0) scale(1);
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(23, 34, 53, 0.34);
+  backdrop-filter: blur(10px);
+}
+
+.modal-card {
+  width: min(460px, 100%);
+  padding: clamp(28px, 6vw, 48px);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 30px 90px rgba(23, 34, 53, 0.24);
+}
+
+.modal-card p {
+  margin: 0 0 22px;
+  color: #172235;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.modal-card.success p {
+  color: #18794e;
+}
+
+.modal-card.playful p {
+  color: #b23b3b;
 }
 
 @media (max-width: 560px) {
@@ -83,7 +326,43 @@ body {
     padding: 18px;
   }
 
-  .message-card {
-    border-radius: 28px;
+  .cards-page {
+    min-height: calc(100dvh - 36px);
+  }
+
+  .eyebrow {
+    margin-bottom: 14px;
+    font-size: 0.74rem;
+  }
+
+  .cards-page h1 {
+    font-size: clamp(1.8rem, 9vw, 2.9rem);
+    line-height: 1;
+  }
+
+  .cards-slider {
+    margin-top: 24px;
+  }
+
+  .reason-card,
+  .answer-card {
+    min-height: 310px;
+    border-radius: 26px;
+  }
+
+  .reason-card img {
+    max-height: 150px;
+    border-radius: 18px;
+  }
+
+  .slider-controls {
+    margin-top: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cards-slider.next .slide-card,
+  .cards-slider.previous .slide-card {
+    animation: none;
   }
 }
